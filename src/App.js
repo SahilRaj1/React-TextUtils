@@ -1,14 +1,28 @@
 import './App.css';
 // import About from './components/About';
 import Navbar from './components/Navbar';
+import React, { useState } from 'react'
 import TextForm from './components/TextForm';
 
 function App() {
+
+  const [mode, setMode] = useState("light") // whether dark mode is enabled or not
+
+  const toggleMode = () => {
+    if (mode === "light") {
+      setMode("dark");
+      document.body.style.backgroundColor = "#36454f";
+    } else {
+      setMode("light");
+      document.body.style.backgroundColor = "white";
+    }
+  }
+
   return (
     <>
-      <Navbar title="TextUtils" />
+      <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} />
       <div className="container my-4">
-        <TextForm heading="Enter the text to analyze below" />
+        <TextForm heading="Enter the text to analyze below" mode={mode} />
         {/* <About/> */}
       </div>
     </>

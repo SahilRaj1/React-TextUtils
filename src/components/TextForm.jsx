@@ -40,10 +40,10 @@ export default function TextForm(props) {
     // setText("This will work"); // correct way to change the state
     return (
         <>
-            <div className="container">
+            <div className="container" style={{color: props.mode === "light"? "#212529":"white"}}>
                 <h1> {props.heading} </h1>
                 <div className="mb-3 my-3">
-                    <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="8"></textarea>
+                    <textarea className="form-control" style={{backgroundColor: props.mode === "dark"? "#212529":"white", color: props.mode === "light"? "#212529":"white"}} value={text} onChange={handleOnChange} id="myBox" rows="8"></textarea>
                 </div>
                 <button className="btn btn-primary mx-1" onClick={handleUpClick} >Convert to Uppercase</button>
                 <button className="btn btn-primary mx-1" onClick={handleLoClick} >Convert to Lowercase</button>
@@ -51,11 +51,11 @@ export default function TextForm(props) {
                 <button className="btn btn-primary mx-1" onClick={handleClear} >Clear</button>
                 <button className="btn btn-primary mx-1" onClick={handleExtraSpaces} >Remove Extra Spaces</button>
             </div>
-            <div className="container my-3">
+            <div className="container my-3" style={{color: props.mode === "light"? "#212529":"white"}}>
                 <h1>Your Text Summary</h1>
                 <p>{text.split(" ").length} words and {text.length} characters</p>
                 <h2>Preview</h2>
-                <p>{text}</p>
+                <p>{text.length>0? text : "Enter something above to preview"}</p>
             </div>
         </>
     )
