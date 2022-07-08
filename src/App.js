@@ -4,6 +4,12 @@ import Navbar from './components/Navbar';
 import React, { useState } from 'react'
 import TextForm from './components/TextForm';
 import Alerts from './components/Alerts';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
 
 function App() {
 
@@ -32,12 +38,21 @@ function App() {
 
   return (
     <>
+    <Router>
       <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} />
       <Alerts alert={alert} />
       <div className="container my-4">
-        <TextForm showAlert={showAlert} heading="Enter the text to analyze below" mode={mode} />
+        <Routes>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/">
+            <TextForm showAlert={showAlert} heading="Enter the text to analyze below" mode={mode} />
+          </Route>
+        </Routes>
         {/* <About/> */}
       </div>
+      </Router>
     </>
   );
 }
