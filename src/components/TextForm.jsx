@@ -38,9 +38,13 @@ export default function TextForm(props) {
         setText(event.target.value);
     }
 
-    const [text, setText] = useState("This is a Sample text")
-    // text = "This wont work"; // wrong way to change the state
-    // setText("This will work"); // correct way to change the state
+    const handleSpeak = ()=>{
+        let msg = new SpeechSynthesisUtterance(text);
+        window.speechSynthesis.speak(msg);
+    }
+
+    const [text, setText] = useState("");
+
     return (
         <>
             <div className="container" style={{color: props.mode === "light"? "#212529":"white"}}>
@@ -51,6 +55,7 @@ export default function TextForm(props) {
                 <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleUpClick} >Convert to Uppercase</button>
                 <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleLoClick} >Convert to Lowercase</button>
                 <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleCopy} >Copy Text</button>
+                <button disabled={text.length===0} className="btn btn-warning mx-1 my-1" onClick={handleSpeak} >Speak</button>
                 <button disabled={text.length===0} className="btn btn-success mx-1 my-1" onClick={handleExtraSpaces} >Remove Extra Spaces</button>
                 <button disabled={text.length===0} className="btn btn-danger mx-1 my-1" onClick={handleClear} >Clear</button>
             </div>
